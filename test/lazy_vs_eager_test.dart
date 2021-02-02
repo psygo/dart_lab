@@ -1,5 +1,9 @@
 import "package:test/test.dart";
 
+import "package:fast_immutable_collections/src/ilist/l_add.dart";
+import "package:fast_immutable_collections/src/ilist/l_flat.dart";
+
+
 void main() {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -127,6 +131,8 @@ void main() {
     var naturalsUpTo10 = naturalsIter.takeWhile((value) => value <= 10);
 
     print("Naturais até 10: $naturalsUpTo10");
+
+    print("\n\n---------- FIM ----------\n\n");
   });
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,17 +151,51 @@ void main() {
     print("\n\n---------- Loop no Iterable ----------\n\n");
 
     for (int i = 0; i < 10; i++) {
-      // Utiliza um loop com `for (E element in this)`
+      // Utiliza um loop com `for (E element in this)`,
+      // que precisa da interface do Iterable para funcionar.
+
       print(iterable.elementAt(i % 3));
     }
 
+    // Internatmente, o Iterable.last cria um Iterator para iterar.
+
     print("\n\n---------- Loop no Iterator ----------\n\n");
 
-    // Quebra!!!
     for (int i = 0; i < 10; i++) {
       iterator.moveNext();
       print(iterator.current);
     }
+
+    print("\n\n---------- FIM ----------\n\n");
+
+    // Há diversas especializações de Iterable e Iterator, é possível encontrá-los
+    // no arquivo internal\iterable.dart
+
+    // Mais informações: https://stackoverflow.com/a/52347550/4756173
+  });
+
+  test("An example of Iterator inside FIC", () {
+    print("\n\n---------- FIC LAdd ----------\n\n");
+
+    final LAdd<int> lAdd = LAdd<int>(LFlat<int>([1, 2, 3]), 4);
+    final Iterator<int> iter = lAdd.iterator;
+
+    expect(iter.current, isNull);
+    expect(iter.moveNext(), isTrue);
+    expect(iter.current, 1);
+    expect(iter.moveNext(), isTrue);
+    expect(iter.current, 2);
+    expect(iter.moveNext(), isTrue);
+    expect(iter.current, 3);
+    expect(iter.moveNext(), isTrue);
+    expect(iter.current, 4);
+    expect(iter.moveNext(), isFalse);
+    expect(iter.current, isNull);
+    // Continuar iterando não nos leva de volta até o começo.
+    expect(iter.moveNext(), isFalse);
+    expect(iter.current, isNull);
+
+    print("\n\n---------- FIM ----------\n\n");
   });
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
