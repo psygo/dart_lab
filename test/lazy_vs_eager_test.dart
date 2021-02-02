@@ -17,7 +17,7 @@ void main() {
       return i % 2 == 0;
     }).toList();
 
-    print("\n\n---------- init ----------\n\n");
+    print("\n\n---------- Init ----------\n\n");
 
     lazy.length;
     lazy.length;
@@ -75,26 +75,29 @@ void main() {
     });
   }
 
-  test("Ordem de Avaliação", () {
+  test("Ordem de avaliação", () {
     var list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
-    print("\n\n---------- init ----------\n\n");
+    print("\n\n---------- Init ----------\n\n");
 
     Iterable<int> eager = removeMenoresQue10_eager(removeImpares_eager(list));
 
     Iterable<int> lazy = removeMenoresQue10_lazy(removeImpares_lazy(list));
 
-    print("\n\n---------- lazy ----------\n\n");
+    print("\n\n---------- Lazy ----------\n\n");
+
     print(lazy);
 
-    print("\n\n---------- eager ----------\n\n");
+    print("\n\n---------- Eager ----------\n\n");
+
     print(eager);
 
+    print("\n\n---------- Contadores ----------\n\n");
+
+    print("Lazy: $lazyCounter");
+    print("Eager: $eagerCounter");
+
     print("\n\n---------- FIM ----------\n\n");
-
-    print(lazyCounter);
-
-    print(eagerCounter);
   });
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
