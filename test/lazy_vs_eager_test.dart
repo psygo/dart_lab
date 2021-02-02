@@ -103,6 +103,7 @@ void main() {
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
+  /// Gerador sob demanda.
   Iterable<int> naturalsFunc() sync* {
     int k = 0;
     // Loop infinito!!!
@@ -126,6 +127,35 @@ void main() {
     var naturalsUpTo10 = naturalsIter.takeWhile((value) => value <= 10);
 
     print("Naturais até 10: $naturalsUpTo10");
+  });
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  test("É possível iterar mais de uma vez em um Iterable? E em um Iterator?", () {
+    var iterable = [1, 2, 3].where((value) => true);
+    var iterator = iterable.iterator;
+
+    print("\n\n---------- Init ----------\n\n");
+
+    print("\n\n---------- Tipos ----------\n\n");
+
+    print("Iterable: ${iterable.runtimeType}");
+    print("Iterator: ${iterator.runtimeType}");
+
+    print("\n\n---------- Loop no Iterable ----------\n\n");
+
+    for (int i = 0; i < 10; i++) {
+      // Utiliza um loop com `for (E element in this)`
+      print(iterable.elementAt(i % 3));
+    }
+
+    print("\n\n---------- Loop no Iterator ----------\n\n");
+
+    // Quebra!!!
+    for (int i = 0; i < 10; i++) {
+      iterator.moveNext();
+      print(iterator.current);
+    }
   });
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
