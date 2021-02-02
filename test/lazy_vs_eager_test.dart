@@ -38,7 +38,7 @@ void main() {
     print("\n\n---------- FIM ----------\n\n");
   });
 
-  //////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////
 
   int eagerCounter = 0;
   int lazyCounter = 0;
@@ -86,6 +86,7 @@ void main() {
 
     print("\n\n---------- Lazy ----------\n\n");
 
+    // Note que, para Iterables, Dart imprime com `()`; e, para List, com `[]`.
     print(lazy);
 
     print("\n\n---------- Eager ----------\n\n");
@@ -98,6 +99,33 @@ void main() {
     print("Eager: $eagerCounter");
 
     print("\n\n---------- FIM ----------\n\n");
+  });
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  Iterable<int> naturalsFunc() sync* {
+    int k = 0;
+    // Loop infinito!!!
+    while (true) yield k++;
+  }
+
+  test("List/Iterable infinito", () {
+    var naturalsIter = naturalsFunc();
+
+    print("\n\n---------- Init ----------\n\n");
+
+    print("A lista/iterable infinita foi criada, mas não avaliada.");
+
+    print("\n\n--------------------\n\n");
+
+    print("\n\n---------- takeWhile ----------\n\n");
+
+    print("É possível trabalhar com ela, "
+        "mas é preciso utilizar um método que pára em algum momento.\n\n");
+
+    var naturalsUpTo10 = naturalsIter.takeWhile((value) => value <= 10);
+
+    print("Naturais até 10: $naturalsUpTo10");
   });
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
