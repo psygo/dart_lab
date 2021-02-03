@@ -173,30 +173,6 @@ void main() {
 
     // Mais informações: https://stackoverflow.com/a/52347550/4756173
   });
-
-  test("An example of Iterator inside FIC", () {
-    print("\n\n---------- FIC LAdd ----------\n\n");
-
-    final LAdd<int> lAdd = LAdd<int>(LFlat<int>([1, 2, 3]), 4);
-    final Iterator<int> iter = lAdd.iterator;
-
-    expect(iter.current, isNull);
-    expect(iter.moveNext(), isTrue);
-    expect(iter.current, 1);
-    expect(iter.moveNext(), isTrue);
-    expect(iter.current, 2);
-    expect(iter.moveNext(), isTrue);
-    expect(iter.current, 3);
-    expect(iter.moveNext(), isTrue);
-    expect(iter.current, 4);
-    expect(iter.moveNext(), isFalse);
-    expect(iter.current, isNull);
-    // Continuar iterando não nos leva de volta até o começo.
-    expect(iter.moveNext(), isFalse);
-    expect(iter.current, isNull);
-
-    print("\n\n---------- FIM ----------\n\n");
-  });
-
+  
   //////////////////////////////////////////////////////////////////////////////////////////////////
 }
