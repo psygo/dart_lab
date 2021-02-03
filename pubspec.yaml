@@ -11,5 +11,3 @@ dev_dependencies:
 
   flutter_test:
     sdk: flutter
-
-  fast_immutable_collections: ^1.0.19

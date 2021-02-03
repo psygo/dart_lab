@@ -1,9 +1,5 @@
 import "package:test/test.dart";
 
-import "package:fast_immutable_collections/src/ilist/l_add.dart";
-import "package:fast_immutable_collections/src/ilist/l_flat.dart";
-
-
 void main() {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -173,6 +169,6 @@ void main() {
 
     // Mais informações: https://stackoverflow.com/a/52347550/4756173
   });
-  
+
   //////////////////////////////////////////////////////////////////////////////////////////////////
 }
