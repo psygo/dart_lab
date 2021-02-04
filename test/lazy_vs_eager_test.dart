@@ -7,42 +7,43 @@ void main() {
     var lazyCounter = 0;
     var eagerCounter = 0;
 
-    var lazy = [1, 2, 3, 4, 5, 6, 7].where((i) {
+    var filtraImparLazy = [1, 2, 3, 4, 5, 6, 7].where((i) {
       lazyCounter++;
       return i % 2 == 0;
     });
 
-    var eager = [1, 2, 3, 4, 5, 6, 7].where((i) {
+    var filtraImparEager = [1, 2, 3, 4, 5, 6, 7].where((i) {
       eagerCounter++;
       return i % 2 == 0;
     }).toList();
 
     print("\n\n---------- Init ----------\n\n");
 
-    lazy.length;
-    lazy.length;
-    lazy.length;
+    filtraImparLazy.length;
+    filtraImparLazy.length;
+    filtraImparLazy.length;
 
-    eager.length;
-    eager.length;
-    eager.length;
+    filtraImparEager.length;
+    filtraImparEager.length;
+    filtraImparEager.length;
 
     print("\n\n---------- Lazy vs Eager ----------\n\n");
 
-    // 1) Roda 3x um objeto lazy => 3 avaliações = 3N+
-    // (Modo Debug pode levar a valores diferentes, o que importa é que é maior)
     print("Lazy: $lazyCounter");
-    // 2) O objeto já foi contruído e não precisa ser avaliado novamento => N
     print("Eager: $eagerCounter");
 
     print("\n\n---------- FIM ----------\n\n");
   });
 
+  // TODO: Mencionar diretamente os EfficientLengthIterable
+  // IterableMixin, ListMixin, SetMixin e MapMixin
+
   /// O método `SnipsCanalRecentes.comConversasRecentesDasMsgs` ilustra bem uma aplicação desse
   /// conceito:
   ///
+  /// TODO: Atualizar o código aqui!
   /// ```dart
-  /// 
+  ///
   /// ```
   ///
   /// Por padrão, talvez seja válido utilizar `List`s, pois o comportamento é mais usual e é muito
@@ -116,6 +117,12 @@ void main() {
     print("\n\n---------- FIM ----------\n\n");
   });
 
+  /// Um Iterable(Iterable) sobre N valores seria basicamente equivalente a um `for` dentro de
+  /// outro `for`, resultando em X*Y operacoes (*thunk*s em linguagens funcionais). Cada operação é
+  /// ocupa sempre mais espaço/memória do que um valor isoladamente. Isso no final gera muita
+  /// ineficiência em memória, *memory leaks*. Em linguagens funcionais é imperativo criar *Tail
+  /// Call Optimitazions* (TCO) para solucionar este problema.
+
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
   /// Gerador sob demanda.
@@ -186,4 +193,7 @@ void main() {
   });
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
+
+  // TODO: Perguntar para os desenvolvedores de Dart por que exatamente a escolha de fazer as
+  // coleções com Iterable
 }
