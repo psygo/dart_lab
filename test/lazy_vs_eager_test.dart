@@ -38,6 +38,21 @@ void main() {
     print("\n\n---------- FIM ----------\n\n");
   });
 
+  /// O método `SnipsCanalRecentes.comConversasRecentesDasMsgs` ilustra bem uma aplicação desse
+  /// conceito:
+  ///
+  /// ```dart
+  /// 
+  /// ```
+  ///
+  /// Por padrão, talvez seja válido utilizar `List`s, pois o comportamento é mais usual e é muito
+  /// mais provável que cálculos sobre uma lista ou iterable sejam feitos mais de uma vez do que
+  /// somente uma.
+  ///
+  /// Porém também é preciso notar que, a princípio, não há paginação no Pid, ou seja, o número
+  /// máximo de itens de uma lista pode ser muito grande, sendo assim, não fica claro, como regra
+  /// geral, qual direção tomar, é preciso ficar atento.
+
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
   int eagerCounter = 0;
